@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "npm install && tsc",
     "build": "npm prune --production && zip package.zip -r node_modules build package.json",
-    "start": "node ./build/app.js"
+    "start": "npx concurrently \"tsc --watch\" \"npx nodemon build/app.js\""
   },
   "author": "",
   "license": "ISC",
