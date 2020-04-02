@@ -11,6 +11,9 @@ enum SimplePos {
   Noun = "Nn",
   Adverb = "Avb",
   Pronoun = "Pnn",
+  Preposition = "Ppn",
+  Conjunctives = "Cjs",
+  Determiner = "Dtr",
   Other = "Ukn"
 }
 
@@ -25,6 +28,12 @@ const simplify = (tag?: string) => {
     return SimplePos.Adverb;
   } else if (tag?.startsWith("PR")) {
     return SimplePos.Pronoun;
+  } else if (tag?.startsWith("IN")) {
+    return SimplePos.Preposition
+  } else if (tag?.startsWith("CC")) {
+    return SimplePos.Conjunctives
+  } else if (tag?.endsWith("DT")) {
+    return SimplePos.Determiner
   } else {
     return SimplePos.Other;
   }
@@ -53,7 +62,7 @@ app.post('/', (req, res) => {
     return res.json(tag(words))
   } else {
     res.statusCode = 400
-    res.send('Invalid request')
+    res.send('Invalid   request')
   }
 })
 
