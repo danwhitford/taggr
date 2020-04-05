@@ -6,12 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "npm install && tsc",
-    "build": "npm prune --production && zip package.zip -r node_modules build package.json",
-    "start": "npx concurrently \"tsc --watch\" \"npx nodemon build/app.js\""
+    "prebuild": "npm prune --production",
+    "build": "zip package.zip -r node_modules build",
+    "start:dev": "npx concurrently \"tsc --watch\" \"npx nodemon build/app.js\"",
+    "start": "node build/app.js",
+    "clean": "rm package.zip"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/aws-lambda": "^8.10.47",
     "@types/cors": "^2.8.6",
     "cors": "^2.8.5",
     "en-pos": "^1.0.16",
