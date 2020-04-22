@@ -37,7 +37,7 @@ const simplify = (tag?: string) => {
   }
 };
 
-const tag = (words: string): [string, string] => {
+const tag = (words: string): [string?, string?][] => {
   const tokens = new Lexed(words).lexer().tokens;
   const tagObj = new Tag(flatMap(tokens)).initial().smooth();
   return zip(tagObj.tokens, tagObj.tags);
